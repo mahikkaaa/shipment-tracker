@@ -1,0 +1,5 @@
+com\mahika\shipmenttracker\repository\ShipmentRepository.class
+com\mahika\shipmenttracker\model\Shipment.class
+com\mahika\shipmenttracker\service\ShipmentService.class
+com\mahika\shipmenttracker\controller\ShipmentController.class
+com\mahika\shipmenttracker\ShipmentTrackerApplication.class
