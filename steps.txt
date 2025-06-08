@@ -1,0 +1,48 @@
+#Shipment-Tracker
+
+Day 1
+made a repository in my local - shipment-tracker, done cd
+added backend and frontend folders in the same repository
+also added a readme file "Smart shipment tracker"
+
+git init - initialised git repository - created a new, empty git repository inside the shipment-tracker project folder - this adds a hidden .git folder to track changes 
+
+
+git remote add origin https://github.com/mahikkaaa/shipment-tracker.git 
+I linked my local git repository to a remote one on GitHub
+this remote is called origin and it points to my GitHub repository url
+
+I created a README.md file using echo. >
+echo. > README.md
+
+
+echo "# Smart Shipment Tracker" >> README.md
+This appends "#Smart Shipping Tracker" to the README.md file and the >> operator appends text to the file {NOTE: if i would use >, it would overwrite}
+
+git add .
+git commit -m "Initial project setup"
+Here git add . - stages all files in the folder and commit is used to commit all staged files with a message 
+
+git push -u origin master
+pushing my commit to the master branch - which failed so i renamed my local branch from master to main {git branch -M main}, and then pushed to main branch - git push -u origin main 
+This failed again because my remote branch had commits my local branch didn't have to i was needed to pull first to sync 
+
+So i did a pull 
+git pull origin main --allow-unrelated-histories
+this pulled remote changes and tried to merge them with local repo 
+the flag {--allow-unrelated-histories} allowed merging two separate project histories and i got a merge conflict in README.md because the remote and local README differed
+
+
+Created nested directories manually in windows, i used windows style backslashes {\} to create nested folders one by one
+mkdir src\main\java\com\mahika\shipmenttracker\controller
+similar to controller folder, i created model (folder for model classes like data entities), repository (folder for repository classes like handling data access) and service (folder to service classes for business logic layer)
+
+
+Created empty files using the echo. command 
+ShipmentTrackerApplication - spring boot application file for backend java project
+pom.xml - maven project configuration file that manages dependencies and build settings for java project
+
+
+
+
+
