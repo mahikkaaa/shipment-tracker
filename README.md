@@ -1,3 +1,1 @@
-<<<<<<< HEAD
- 
 "# Smart Shipment Tracker" 
