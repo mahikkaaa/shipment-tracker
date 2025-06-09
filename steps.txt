@@ -1,4 +1,4 @@
-#Shipment-Tracker
+#Shipment-Tracker - initial set up of the project
 
 Day 1
 made a repository in my local - shipment-tracker, done cd
@@ -42,7 +42,59 @@ Created empty files using the echo. command
 ShipmentTrackerApplication - spring boot application file for backend java project
 pom.xml - maven project configuration file that manages dependencies and build settings for java project
 
+touch filename - creates empty file (Linux only)	but Not available on Windows CMD
+type nul > filename - creates truly empty file
+echo. > filename - Creates 1 blank line	
+echo filename - prints the name of the file, more like a print statement
 
 
+Pre-requisite for Backend
 
+before starting to work on backend, i made sure all required tools are installed 
+Java 11+ -> java --version
+Node.js -> node -v && npm -v
+aws cli -> aws --version, aws configure 
+
+AWS CLI Installation
+https://aws.amazon.com/cli/
+"Windows (64-bit)" installer under Version 2.
+
+AWS Configuration
+AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: ap-south-1
+Default output format [None]: json
+
+How to get Access Key ID & Secret Access Key
+- Go to the AWS Console → https://console.aws.amazon.com/
+- Navigate to IAM → Users → click your username.
+- Go to the Security Credentials tab.
+- Scroll to Access Keys → Click Create access key
+- Select “Application running outside AWS” → Click Next
+- Copy: AWS Access Key ID, AWS Secret Access Key
+
+Installation and Configuration of Maven on Windows
+- https://maven.apache.org/download.cgi
+- "Binary zip archive" version (e.g., apache-maven-3.9.6-bin.zip)
+- extract zip
+- add Maven to System Path -> Windows + S -> Search environment variables -> click on "Edit the system environment variables" -> click Environment Variables -> Under System Variables find "Path" and click edit -> click new and paste bin path "C:\Users\Mahika Agrawal\Downloads\apache-maven-3.9.10-bin\apache-maven-3.9.10\bin" ->Also add a new system variable (Variable name : MAVEN_HOME, Variable Value : C:\Users\Mahika Agrawal\Downloads\apache-maven-3.9.10-bin\apache-maven-3.9.10)
+- Verify the installation : mvn -v
+
+Backend
+Implementing the backend logic for creating and fetching shipments using Spring Boot.
+- model/Shipment.java
+	{cd backend/src/main/java/com/mahika/shipmenttracker/
+	mkdir model
+	cd model
+	notepad Shipment.java}
+- repository/ShipmentRepository.java
+- service/ShipmentService.java
+- controller/ShipmentController.java
+- shipmenttracker/ShipmentTrackerApplication.java (main application file)
+- added project details and dependencies in pom.xml
+- resources/application.properties
+
+run the app -> mvn spring-boot:run
+
+check post and get request in postman desktop
 
