@@ -95,6 +95,62 @@ Implementing the backend logic for creating and fetching shipments using Spring 
 - resources/application.properties
 
 run the app -> mvn spring-boot:run
-
 check post and get request in postman desktop
 
+WHAT HAPPENS STEP-BY-STEP WHEN A USER MAKES A POST REQUESTTO CREATE A SHIPMENT IN THE SPRING BOOT APP
+User calls POST /api/shipments to create a new shipment
+1. User sends an HTTP POST request with shipment data (JSON) to the endpoint /api/shipments
+2. ShipmentController.java receives the request
+Spring Boot automatically maps the request URL /api/shipments to the controller method annotated with @PostMapping("/api/shipments")
+
+It also converts the JSON body into a Shipment Java object using Jackson (JSON library integrated in Spring Boot)
+
+Example:
+@PostMapping("/api/shipments")
+public Shipment createShipment(@RequestBody Shipment shipment) {
+    return shipmentService.saveShipment(shipment);
+}
+So here, controller calls the service layer method saveShipment() with the Shipment object
+
+3. ShipmentService.java processes the request
+This is the business logic layer where you can apply validations, rules, or modify the shipment before saving
+Example: maybe set a default status or timestamp if missing
+Then it calls the repository to save the shipment to the database:
+
+public Shipment saveShipment(Shipment shipment) {
+    // Apply business logic if any
+    return shipmentRepository.save(shipment);
+}
+
+4. ShipmentRepository.java handles database operations
+This interface extends Spring Data JPA’s JpaRepository or CrudRepository
+At runtime, Spring Boot provides an implementation automatically for common CRUD operations
+The save() method inserts the shipment data as a new row in the H2 in-memory database (or whatever DB configured)
+Hibernate (JPA implementation) converts the Shipment object into SQL INSERT statement
+
+5. H2 database stores the shipment data
+The shipment is saved in a table (e.g., shipment), created based on the Shipment entity class
+
+Since it’s an in-memory DB, the data lasts as long as the app is running
+
+6. Response sent back
+The saved shipment object (now with a generated id from DB) is returned by the repository to the service
+
+The service returns it to the controller
+The controller converts the Shipment object back to JSON
+Spring Boot sends this JSON response back to the user with status code 201 Created (usually)
+
+7. End
+User sees the response containing the created shipment details (including database-generated id)
+
+They can use this id for future GET/PUT/DELETE requests
+
+
+BACKEND SUMMARY 
+ShipmentTrackerApplication.java - Starts the whole Spring Boot app and server.
+Shipment.java - Defines the data structure and database table mapping.
+ShipmentRepository.java - Talks directly to the database for CRUD operations.
+ShipmentService.java - Contains the main business rules and logic.
+ShipmentController.java - Receives web requests and sends responses.
+application.properties - Configures how the app connects to DB and behaves.
+pom.xml	- Manages libraries and builds the project.

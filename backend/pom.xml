@@ -1,17 +1,28 @@
+<!-- Declares this file as a Maven Project Object Model (POM).                            -->
+  <!-- Provides the XML namespace and schema for validation. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- Defines the version of the POM model used (standard is 4.0.0). -->
+  <modelVersion>4.0.0</modelVersion> 
 
-  <groupId>com.mahika</groupId>
+<!-- These are your project coordinates. -->
+  <!-- groupId: your organization's domain. -->
+  <groupId>com.mahika</groupId> 
+  <!-- artifactId: name of the app or module. -->
   <artifactId>shipmenttracker</artifactId>
+  <!-- version: current project version. SNAPSHOT means it’s still under development. -->
   <version>0.0.1-SNAPSHOT</version>
+  <!-- Packaging the application as a JAR file. -->
   <packaging>jar</packaging>
 
+  <!-- Human-readable name and description of the project. -->
   <name>shipmenttracker</name>
   <description>Smart Shipment Tracker</description>
 
+  <!-- Inherits configuration and dependency management from Spring Boot starter parent. relativePath is empty so Maven looks for the parent in central repo, not locally. -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -19,24 +30,25 @@
     <relativePath/>
   </parent>
 
+  <!-- Defines Java version used to compile the project (Java 17). -->
   <properties>
     <java.version>17</java.version>
   </properties>
 
   <dependencies>
-    <!-- Spring Boot Web -->
+    <!-- Spring Boot Web - Brings in Spring MVC, REST, Tomcat server – everything needed for a web API.-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- Spring Boot JPA -->
+    <!-- Spring Boot JPA - Adds support for JPA (Java Persistence API) and Hibernate for database interaction.-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-    <!-- H2 In-memory DB -->
+    <!-- H2 In-memory DB - Adds an embedded H2 database, used only at runtime – great for testing or development without installing a real DB.-->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -44,6 +56,7 @@
     </dependency>
   </dependencies>
 
+  <!-- Build Configuration - Adds the Spring Boot Maven plugin. Helps you package your app as an executable JAR and run it with mvn spring-boot:run. -->
   <build>
     <plugins>
       <plugin>
@@ -54,3 +67,13 @@
   </build>
 
 </project>
+<!-- Closes the main project element. -->
+
+<!-- Summary
+I have configured a Spring Boot app that:
+Uses Java 17
+Exposes REST APIs via spring-boot-starter-web
+Persists data using spring-boot-starter-data-jpa
+Uses an H2 in-memory DB (no external DB needed)
+Can be packaged and run with Maven -->
+
